@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Awareness Food</string>
+    <string name="instructions">Instructions</string>
+    <string name="refresh">Refresh</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="ingredient">%1$.2f %2$s %3$s</string>
+    <string name="network_is_available">Network connection is available again!</string>
+    <string name="network_is_unavailable">Network connection is gone!</string>
+    <string name="retry">Retry</string>
+    <string name="error">Oops. There was an error. Please try again.</string>
+    <string name="get_food_trivia">Get Food Trivia!</string>
+    <string name="trivia_error">There was an error. Please try again.</string>
+    <string name="food_trivia">Food Trivia</string>
+</resources>
