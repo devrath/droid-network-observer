@@ -38,6 +38,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -51,7 +52,6 @@ import com.yourcompany.android.awarenessfood.monitor.NetworkMonitor
 import com.yourcompany.android.awarenessfood.monitor.NetworkState
 import com.yourcompany.android.awarenessfood.monitor.UnavailableConnectionLifecycleOwner
 import com.yourcompany.android.awarenessfood.repositories.models.RecipeApiState
-import com.yourcompany.android.awarenessfood.viewmodels.MainViewModel
 import com.yourcompany.android.awarenessfood.viewmodels.UiLoadingState
 import com.yourcompany.android.awarenessfood.views.IngredientView
 import com.squareup.picasso.Picasso
@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
   private lateinit var networkMonitor: NetworkMonitor
   private val networkObserver = NetworkObserver()
 
-  private val viewModel: MainViewModel by viewModels()
   private lateinit var binding: ActivityMainBinding
   private var snackbar: Snackbar? = null
 
@@ -85,34 +84,9 @@ class MainActivity : AppCompatActivity() {
 
     unavailableConnectionLifecycleOwner.addObserver(networkObserver)
 
-    viewModel.recipeState.observe(this, Observer {
-      when (it) {
-        RecipeApiState.Error -> showNetworkUnavailableAlert(R.string.error)
-        is RecipeApiState.Result -> buildViews(it.recipe)
-      }
-    })
-    viewModel.getRandomRecipe()
-
     networkMonitor.networkAvailableStateFlow.asLiveData().observe(this, Observer { networkState ->
       handleNetworkState(networkState)
     })
-
-    viewModel.loadingState.observe(this, Observer { uiLoadingState ->
-      handleLoadingState(uiLoadingState)
-    })
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-    R.id.menu_refresh -> {
-      clearViews()
-      viewModel.getRandomRecipe()
-      true
-    }
-    R.id.menu_trivia -> {
-      startActivity(Intent(this, FoodTriviaActivity::class.java))
-      true
-    }
-    else -> super.onOptionsItemSelected(item)
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -154,22 +128,11 @@ class MainActivity : AppCompatActivity() {
   private fun showNetworkUnavailableAlert(message: Int) {
     snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_INDEFINITE)
         .setAction(R.string.retry) {
-          viewModel.getRandomRecipe()
+         Toast.makeText(this@MainActivity,"Retry clicked",Toast.LENGTH_LONG).show()
         }.apply {
           view.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.purple_500))
           show()
         }
-  }
-
-  private fun handleLoadingState(uiLoadingState: UiLoadingState?) {
-    when (uiLoadingState) {
-      UiLoadingState.Loading -> {
-        clearViews()
-        binding.progressBar.isVisible = true
-      }
-      UiLoadingState.NotLoading -> binding.progressBar.isVisible = false
-      else -> {}
-    }
   }
 
   private fun handleNetworkState(networkState: NetworkState?) {

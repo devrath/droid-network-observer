@@ -27,10 +27,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".FoodTriviaActivity"
-            android:exported="true"/>
-
     </application>
 
 </manifest>
