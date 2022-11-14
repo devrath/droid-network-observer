@@ -1,4 +1,4 @@
-package com.yourcompany.android.awarenessfood.viewmodels
+package com.droid.android.code.viewmodels
 
 sealed class UiLoadingState {
   object Loading : UiLoadingState()

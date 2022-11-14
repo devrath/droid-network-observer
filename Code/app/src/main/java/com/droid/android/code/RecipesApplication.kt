@@ -1,8 +1,8 @@
-package com.yourcompany.android.awarenessfood
+package com.droid.android.code
 
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.yourcompany.android.awarenessfood.analytics.AppGlobalEvents
+import com.droid.android.code.analytics.AppGlobalEvents
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

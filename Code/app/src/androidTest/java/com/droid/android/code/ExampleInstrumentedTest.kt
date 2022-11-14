@@ -1,4 +1,4 @@
-package com.yourcompany.android.awarenessfood
+package com.droid.android.code
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

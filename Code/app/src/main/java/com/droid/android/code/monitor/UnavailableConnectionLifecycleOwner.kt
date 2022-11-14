@@ -1,4 +1,4 @@
-package com.yourcompany.android.awarenessfood.monitor
+package com.droid.android.code.monitor
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

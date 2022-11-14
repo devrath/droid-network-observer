@@ -1,10 +1,9 @@
-package com.yourcompany.android.awarenessfood.di
+package com.droid.android.code.di
 
-import com.yourcompany.android.awarenessfood.analytics.AnalyticsEvents
-import com.yourcompany.android.awarenessfood.analytics.AnalyticsEventsImpl
+import com.droid.android.code.analytics.AnalyticsEvents
+import com.droid.android.code.analytics.AnalyticsEventsImpl
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton

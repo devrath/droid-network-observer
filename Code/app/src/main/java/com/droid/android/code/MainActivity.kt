@@ -1,16 +1,15 @@
-package com.yourcompany.android.awarenessfood
+package com.droid.android.code
 
 import android.os.Bundle
-import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.google.android.material.snackbar.Snackbar
-import com.yourcompany.android.awarenessfood.databinding.ActivityMainBinding
-import com.yourcompany.android.awarenessfood.monitor.NetworkMonitor
-import com.yourcompany.android.awarenessfood.monitor.NetworkState
-import com.yourcompany.android.awarenessfood.monitor.UnavailableConnectionLifecycleOwner
+import com.droid.android.code.databinding.ActivityMainBinding
+import com.droid.android.code.monitor.NetworkMonitor
+import com.droid.android.code.monitor.NetworkState
+import com.droid.android.code.monitor.UnavailableConnectionLifecycleOwner
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

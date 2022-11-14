@@ -1,10 +1,10 @@
-package com.yourcompany.android.awarenessfood
+package com.droid.android.code
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import com.yourcompany.android.awarenessfood.monitor.NetworkMonitor
+import com.droid.android.code.monitor.NetworkMonitor
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Before

@@ -1,4 +1,4 @@
-package com.yourcompany.android.awarenessfood.analytics
+package com.droid.android.code.analytics
 
 import androidx.lifecycle.*
 import javax.inject.Inject

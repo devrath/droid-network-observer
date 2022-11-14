@@ -1,4 +1,4 @@
-package com.yourcompany.android.awarenessfood.monitor
+package com.droid.android.code.monitor
 
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
