@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
-import com.google.android.material.snackbar.Snackbar
 import com.droid.android.code.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 import com.droid.android.code.monitor.NetworkMonitor
 import com.droid.android.code.monitor.NetworkState
 import com.droid.android.code.monitor.UnavailableConnectionLifecycleOwner
