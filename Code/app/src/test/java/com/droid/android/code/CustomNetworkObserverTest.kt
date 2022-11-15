@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import com.droid.android.code.monitor.NetworkMonitor
+import com.droid.android.code.monitor.NetworkObserver
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Before
@@ -12,10 +12,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 
-class NetworkMonitorTest {
+class CustomNetworkObserverTest {
 
   private val lifecycleOwner = mockk<LifecycleOwner>(relaxed = true)
-  private val networkMonitor = mockk<NetworkMonitor>(relaxed = true)
+  private val networkObserver = mockk<NetworkObserver>(relaxed = true)
 
   private lateinit var lifecycleRegistry: LifecycleRegistry
 
@@ -25,7 +25,7 @@ class NetworkMonitorTest {
   @Before
   fun setup() {
     lifecycleRegistry = LifecycleRegistry(lifecycleOwner)
-    lifecycleRegistry.addObserver(networkMonitor)
+    lifecycleRegistry.addObserver(networkObserver)
   }
 
   @Test
@@ -36,7 +36,7 @@ class NetworkMonitorTest {
 
     // Verify the execution of the correct method.
     verify {
-      networkMonitor.onCreate(lifecycleOwner)
+      networkObserver.onCreate(lifecycleOwner)
     }
   }
 
@@ -48,7 +48,7 @@ class NetworkMonitorTest {
 
     // Verify the execution of the correct method.
     verify {
-      networkMonitor.onStart(lifecycleOwner)
+      networkObserver.onStart(lifecycleOwner)
     }
   }
 
@@ -61,7 +61,7 @@ class NetworkMonitorTest {
 
     // Verify the execution of the correct method.
     verify {
-      networkMonitor.onStop(lifecycleOwner)
+      networkObserver.onStop(lifecycleOwner)
     }
   }
 }

@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  * This class is in charge of listening to the state of the network connection and notifying the
  * activity if the state of the connection changes.
  * */
-class NetworkMonitor constructor(
+class NetworkObserver constructor(
     private val context: Context,
     private val lifecycle: Lifecycle
   ) : DefaultLifecycleObserver {
@@ -29,6 +29,7 @@ class NetworkMonitor constructor(
   private lateinit var job: Job
   private lateinit var coroutineScope: CoroutineScope
 
+  // State Holder: Indicating either the network is available or not-available
   private val _networkAvailableStateFlow: MutableStateFlow<NetworkState> = MutableStateFlow(NetworkState.Available)
   val networkAvailableStateFlow
     get() = _networkAvailableStateFlow
@@ -49,14 +50,13 @@ class NetworkMonitor constructor(
   }
 
   private fun init() {
-    connectivityManager =
-        context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+    // Initialize the connectivity manager instance
+    connectivityManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
   }
 
   private fun registerNetworkCallback() {
-    // With this condition, NetworkMonitor will only start monitoring the network connection when
-    // the parent lifecycle is at least in the STARTED state.
     if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+      // Observing the network should happen only when the life-cycle is in started state
       initCoroutine()
       initNetworkMonitoring()
     }
@@ -68,8 +68,13 @@ class NetworkMonitor constructor(
     job.cancel()
   }
 
+  /**
+   * Co-Routine used to monitor the connectivity
+   */
   private fun initCoroutine() {
+    // Create a job instance
     job = Job()
+    // Provide a co-routine scope
     coroutineScope = CoroutineScope(Dispatchers.Default + job)
   }
 
