@@ -10,7 +10,6 @@ import androidx.lifecycle.*
 import com.droid.android.code.databinding.ActivityMainBinding
 import com.droid.network_observer.NetworkObserver
 import com.droid.network_observer.NetworkState
-import com.droid.network_observer.UnavailableConnectionLifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,11 +21,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-  @Inject
-  lateinit var unavailableConnectionLifecycleOwner: UnavailableConnectionLifecycleOwner
-
   private lateinit var networkMonitor: NetworkObserver
-  private val customNetworkObserver = CustomNetworkObserver()
 
   private lateinit var binding: ActivityMainBinding
   private var snackbar: Snackbar? = null
@@ -40,15 +35,13 @@ class MainActivity : AppCompatActivity() {
     networkMonitor = NetworkObserver(this, lifecycle)
     lifecycle.addObserver(networkMonitor)
 
-    unavailableConnectionLifecycleOwner.addObserver(customNetworkObserver)
-
     networkMonitor.networkAvailableStateFlow.asLiveData().observe(this, Observer { networkState ->
       handleNetworkState(networkState)
     })
   }
 
   private fun showNetworkUnavailableAlert(message: Int) {
-    snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+    snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_INDEFINITE)
       .setActionTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
       .setAction(R.string.retry) {
          Toast.makeText(this@MainActivity,"Retry clicked",Toast.LENGTH_LONG).show()
@@ -60,8 +53,8 @@ class MainActivity : AppCompatActivity() {
 
   private fun handleNetworkState(networkState: NetworkState?) {
     when (networkState) {
-      NetworkState.Unavailable -> unavailableConnectionLifecycleOwner.onConnectionLost()
-      NetworkState.Available -> unavailableConnectionLifecycleOwner.onConnectionAvailable()
+      NetworkState.Unavailable -> showNetworkUnavailableAlert(R.string.network_is_unavailable)
+      NetworkState.Available -> removeNetworkUnavailableAlert()
       else -> {}
     }
   }
@@ -78,22 +71,4 @@ class MainActivity : AppCompatActivity() {
     //snackbar?.dismiss()
   }
 
-  inner class CustomNetworkObserver : DefaultLifecycleObserver {
-
-    override fun onStart(owner: LifecycleOwner) {
-      onNetworkAvailable()
-    }
-
-    override fun onStop(owner: LifecycleOwner) {
-      onNetworkUnavailable()
-    }
-
-    private fun onNetworkUnavailable() {
-      showNetworkUnavailableAlert(R.string.network_is_unavailable)
-    }
-
-    private fun onNetworkAvailable() {
-      removeNetworkUnavailableAlert()
-    }
-  }
 }
