@@ -1,7 +1,7 @@
-package com.droid.android.code.di
+package com.droid.analytics.di
 
-import com.droid.android.code.analytics.AnalyticsEvents
-import com.droid.android.code.analytics.AnalyticsEventsImpl
+import com.droid.analytics.AnalyticsEvents
+import com.droid.analytics.AnalyticsEventsImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -2,7 +2,7 @@ package com.droid.android.code
 
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.droid.android.code.analytics.AppGlobalEvents
+import com.droid.analytics.AppGlobalEvents
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

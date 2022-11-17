@@ -1,4 +1,4 @@
-package com.droid.android.code.analytics
+package com.droid.analytics
 
 import android.util.Log
 import javax.inject.Inject

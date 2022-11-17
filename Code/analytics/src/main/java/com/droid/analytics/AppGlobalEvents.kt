@@ -1,4 +1,4 @@
-package com.droid.android.code.analytics
+package com.droid.analytics
 
 import androidx.lifecycle.*
 import javax.inject.Inject
