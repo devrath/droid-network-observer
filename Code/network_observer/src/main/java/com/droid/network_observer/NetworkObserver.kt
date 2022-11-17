@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.net.Network
+import android.net.NetworkCapabilities
 import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.net.NetworkRequest
 import androidx.lifecycle.*
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * This class is in charge of listening to the state of the network connection and notifying the
@@ -31,8 +33,15 @@ class NetworkObserver constructor(
 
   // State Holder: Indicating either the network is available or not-available
   private val _networkAvailableStateFlow: MutableStateFlow<NetworkState> = MutableStateFlow(NetworkState.Available)
+
   val networkAvailableStateFlow
     get() = _networkAvailableStateFlow
+
+  // ---> This variable can be accessed anytime to get the current state of the network
+  val isConnected: Boolean
+    get() = _isConnected.get()
+
+  private val _isConnected = AtomicBoolean(false)
 
   override fun onCreate(owner: LifecycleOwner) {
     super.onCreate(owner)
@@ -42,6 +51,7 @@ class NetworkObserver constructor(
   override fun onStart(owner: LifecycleOwner) {
     super.onStart(owner)
     registerNetworkCallback()
+    checkValidNetworks()
   }
 
   override fun onStop(owner: LifecycleOwner) {
@@ -83,6 +93,8 @@ class NetworkObserver constructor(
 
     val networkRequest = NetworkRequest.Builder()
         .addCapability(NET_CAPABILITY_INTERNET)
+        .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+        .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
         .build()
     connectivityManager?.registerNetworkCallback(networkRequest, networkCallback)
   }
@@ -106,10 +118,13 @@ class NetworkObserver constructor(
   private fun checkValidNetworks() {
     coroutineScope.launch {
       _networkAvailableStateFlow.emit(
-          if (validNetworks.size > 0)
+          if (validNetworks.size > 0){
+            _isConnected.set(true)
             NetworkState.Available
-          else
+          } else {
+            _isConnected.set(false)
             NetworkState.Unavailable
+          }
       )
     }
   }
