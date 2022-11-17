@@ -1,4 +1,4 @@
-package com.droid.android.code.monitor
+package com.droid.network_observer
 
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE

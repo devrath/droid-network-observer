@@ -1,4 +1,4 @@
-package com.droid.android.code.monitor
+package com.droid.network_observer
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

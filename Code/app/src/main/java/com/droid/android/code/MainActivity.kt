@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.droid.android.code.databinding.ActivityMainBinding
-import com.droid.android.code.monitor.NetworkObserver
-import com.droid.android.code.monitor.NetworkState
-import com.droid.android.code.monitor.UnavailableConnectionLifecycleOwner
+import com.droid.network_observer.NetworkObserver
+import com.droid.network_observer.NetworkState
+import com.droid.network_observer.UnavailableConnectionLifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
