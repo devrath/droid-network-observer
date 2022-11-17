@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    // --> Initialize the network observer in your activity or fragment
     networkObserver = NetworkObserver(this, lifecycle)
     lifecycle.addObserver(networkObserver)
 
+    // --> Use live data to observe the network changes
     networkObserver.networkAvailableStateFlow.asLiveData().observe(this, Observer { networkState ->
       when (networkState) {
         NetworkState.Unavailable -> SnackBarDisplay.showNetworkUnavailableAlert(binding.root)
