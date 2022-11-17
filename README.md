@@ -1,2 +1,2 @@
-# droid-lifecycleaware-components
-Repository describes how life-cycle components work and how to use them 
+# droid-network-observer
+Repository describes how to observe the network changes in a android project
