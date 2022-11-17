@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AwarenessFood"
+        android:theme="@style/Theme.demo"
         tools:targetApi="31"
         android:name="com.droid.android.code.RecipesApplication">
         <activity
