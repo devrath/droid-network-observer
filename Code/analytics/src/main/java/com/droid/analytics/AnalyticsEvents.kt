@@ -1,4 +1,4 @@
-package com.droid.android.code.analytics
+package com.droid.analytics
 
 interface AnalyticsEvents {
 

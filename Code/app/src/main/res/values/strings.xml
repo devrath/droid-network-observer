@@ -1,9 +1,5 @@
 <resources>
-    <string name="app_name">Awareness Food</string>
-    <string name="network_is_available">Network connection is available again!</string>
-    <string name="network_is_unavailable">Network connection is gone!</string>
-    <string name="retry">Retry</string>
-    <string name="error">Oops. There was an error. Please try again.</string>
-    <string name="trivia_error">There was an error. Please try again.</string>
-    <string name="food_trivia">Food Trivia</string>
+    <string name="app_name">Demo</string>
+    <string name="network_is_available">Network connected</string>
+    <string name="network_is_unavailable">Network connection is lost</string>
 </resources>

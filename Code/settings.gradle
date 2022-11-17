@@ -12,5 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Awareness Food"
+rootProject.name = "demo"
 include ':app'
+include ':network_observer'
+include ':analytics'
