@@ -1,7 +1,11 @@
 <img src="https://github.com/devrath/devrath/blob/master/images/kotlin_logo.png" align="right" title="Kotlin Logo" width="120">
 
 # droid-network-observer 🧞‍
-Repository describes how to observe the network changes in a android project
+[![life-cycle-aware](https://img.shields.io/badge/life--cycle--aware-red)](https://developer.android.com/topic/libraries/architecture/lifecycle) 
+[![Kotlin](https://img.shields.io/badge/connectivity--manager-brightgreen)](https://developer.android.com/reference/android/net/ConnectivityManager)
+[![Coroutines](https://img.shields.io/badge/Coroutines-1.6.0-red)](https://kotlinlang.org/docs/reference/coroutines-overview.html) [![DaggerHilt](https://img.shields.io/badge/DaggerHilt-2.40-blue)](https://developer.android.com/training/dependency-injection/hilt-android)
+[![Live data](https://img.shields.io/badge/live--data-orange)](https://developer.android.com/topic/libraries/architecture/livedata)
+[![Multi module](https://img.shields.io/badge/Multi--Module-blueviolet)](https://developer.android.com/topic/modularization)
 
 ## **`𝚄𝚜𝚎 𝚌𝚊𝚜𝚎`** 🚀
 🏷️ In android projects it is common to communicate with a network and get data from a remote server or post data into remote server. </br>
