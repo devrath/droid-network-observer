@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Demo</string>
-    <string name="network_is_available">Network connection is available again!</string>
-    <string name="network_is_unavailable">Network connection is gone!</string>
+    <string name="network_is_available">Network connected</string>
+    <string name="network_is_unavailable">Network connection is lost</string>
 </resources>
